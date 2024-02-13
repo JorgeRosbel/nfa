@@ -27,7 +27,8 @@ $nfa
 $nfa.rand()
 ```
 
-3. -Get the hash of my current iteration.
+3. -Get the hash of my current iteration.Having this value you can use the nfs parameters in your url like this: `<https://localhost?nfa=your hash generated here>`
+
 ```javascript
 $nfa.hash
 ```
@@ -95,6 +96,15 @@ function setup(){
 
 
 ```
+
+## Conclusions
+
+It was fun writing this code.
+
+Certain points of compatibility with NFA still need to be established, but that is out of my hands. I could only simulate uploading a project and apparently I didn't get any errors.
+
+You can review the code, analyze what you think and I'm here to respond if you wish.
+
 
 ## License
 
