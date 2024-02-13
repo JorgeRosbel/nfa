@@ -14,7 +14,7 @@ This project aims to streamline and enhance the interaction between artists and 
 <script src="./nfa.js"></script>
 ```
 
-## Uso
+## Use
 
 1. The nfa module will be available globally.Which means that directly from the console you can access. 
 You can access it through:
