@@ -18,8 +18,7 @@ This project is based on the main information being entered into nfa.js through 
 
 ## Use
 
-1. The nfa module will be available globally.Which means that directly from the console you can access. 
-You can access it through:
+1. The nfa module will be available globally.Which means that directly from the console you can access. You can access it through:
 ```javascript
 $nfa
 ```
