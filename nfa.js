@@ -6,9 +6,12 @@
     nfa_finished = !1,
     params = new URLSearchParams(W.location.search),
     root = "123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+    iteration = parseInt(params.get('iteration') )|| 0,
     hash  = params.get('nfa') || `nfa${Array.from({ length: 36}, () => root[Math.random() * root.length | 0]).join("")}`,
     _hash = hash.slice(3),
+    minter = params.get('minter') || Array.from({ length: 44}, () => root[Math.random() * root.length | 0]).join(""),
     bdc58 = str => str.split('').reduce((r,c) => r * 58 + root.indexOf(c), 0),
+    minterHash = minter.split('').reduce((h,_,i)=> {if(i % 11 === 0){h.push(minter.slice(i,i+11))};return h},[]).map(v => bdc58(v)),
     hashsArr = _hash.split('').reduce((h,_,i)=> {if(i % 9 === 0){h.push(_hash.slice(i,i+9))};return h},[]).map(v => bdc58(v)),
     sfc32 =(a, b, c, d) =>{
         return function() {
@@ -24,7 +27,9 @@
         }
     },
     rand = sfc32(...hashsArr),
-    reset = () =>  W.$nfa.rand =sfc32(...hashsArr),
+    reset = () =>  W.$nfa.rand = sfc32(...hashsArr),
+    randMinter = sfc32(...minterHash),
+    resetMinter = () => W.$nfa.randMinter =  sfc32(...minterHash),
     finish = (traitArray) =>{
         if(Array.isArray(traitArray)){
           traitArray.forEach(v => {
@@ -56,5 +61,5 @@
         console.log(nfa_finished,nfa_traits)
       }
 
-    W.$nfa = {launch,hash,hashsArr,rand,reset,finish}
+    W.$nfa = {launch,hash,minter,iteration,rand,reset,finish,randMinter,resetMinter}
 })()
