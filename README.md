@@ -37,6 +37,12 @@ let a = $nfa.randMinter();
 let b = $nfa.resetMinter();
 ```
 
+3. 1 Get Wallet Address.The idea is to call this function at mint time to obtain and save the wallet address of the minter and use that value as a seed
+```javascript
+    
+    let address =  getWalletAddress()
+```
+
 4. -Get the hash of my current iteration.Having this value you can use the nfs parameters in your url like this: `<https://localhost?nfa=hash>`  // `<https://localhost?minter=minterHash>`. If you wish, you can use both in the same project at the same time: `<https://localhost?nfa=hash&minter=minterHash>`
 
 ```javascript

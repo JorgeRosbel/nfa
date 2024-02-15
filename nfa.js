@@ -10,6 +10,7 @@
     hash  = params.get('nfa') || `nfa${Array.from({ length: 36}, () => root[Math.random() * root.length | 0]).join("")}`,
     _hash = hash.slice(3),
     minter = params.get('minter') || Array.from({ length: 44}, () => root[Math.random() * root.length | 0]).join(""),
+    getWalletAddress = () => (W.solana && W.solana.publicKey) ? W.solana.publicKey.toString() : null,
     bdc58 = str => str.split('').reduce((r,c) => r * 58 + root.indexOf(c), 0),
     minterHash = minter.split('').reduce((h,_,i)=> {if(i % 11 === 0){h.push(minter.slice(i,i+11))};return h},[]).map(v => bdc58(v)),
     hashsArr = _hash.split('').reduce((h,_,i)=> {if(i % 9 === 0){h.push(_hash.slice(i,i+9))};return h},[]).map(v => bdc58(v)),
@@ -61,5 +62,5 @@
         console.log(nfa_finished,nfa_traits)
       }
 
-    W.$nfa = {launch,hash,minter,iteration,rand,reset,finish,randMinter,resetMinter}
+    W.$nfa = {launch,hash,minter,iteration,rand,reset,finish,randMinter,resetMinter,getWalletAddress}
 })()
