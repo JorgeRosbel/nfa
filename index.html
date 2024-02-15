@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./nfa.js"></script>
+    <script src="./p5.min.js"></script>
+
+    <style>*{margin:0;background:#fff}#defaultCanvas0{margin:auto;position:absolute;inset:0}</style>
+</head>
+<body>
+
+    <script>
+        //Example 
+        let seed;
+
+        function setup(){
+            
+            //Here we declare the seed for random() and noise()
+            seed = Math.floor($nfa.randMinter() * 99999); // or seed = Math.floor($nfa.rand() * 99999);
+
+            //Your draw function
+            art()
+        }
+
+
+        function art(){
+            const w = Math.min(window.innerWidth,window.innerHeight);
+
+            randomSeed(seed);
+            noiseSeed(seed);
+
+
+            createCanvas(w, w);
+            background(200);
+
+            let nCircles = int(random(10,20))
+
+            for(let i = 0; i < nCircles; i++){
+                push()
+                fill(random(255))
+                circle(random(width*.2,width-width*.2),random(height*.2,height-height*.2), w * random(0.06,0.2))
+                pop()
+            }
+
+            $nfa.finish([
+                {
+                    "trait_type": "Number",
+                    "value": nCircles.toString(),
+                }
+            ])
+        }
+
+
+       function windowResized(){
+        art();
+       }
+
+
+
+
+
+
+
+     
+    </script>
+    
+</body>
+</html>
